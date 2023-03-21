@@ -7,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href=""> Create New Order</a>
-                <a class="btn btn-Primary" href="{{'customers'}}"> View Customers</a><br>
+                <a class="btn btn-Primary" href="{{route('customer.index')}}"> View Customers</a><br>
 <br>
             </div><br>
         </div>
@@ -29,5 +29,11 @@
             <th>Total Amount</th>
             <th width="280px">Action</th>
         </tr>
+
+@foreach($orderdata as $data)
+
+@endforeach
+
+
     </table>
 @endsection

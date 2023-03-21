@@ -12,7 +12,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('order.index');
+        $orderdata=OrderModel::get();
+        return view('order.index', compact('orderdata'));
     }
 
     /**
@@ -20,7 +21,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('order.create');
     }
 
     /**
@@ -28,7 +29,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'customer_id' => 'required',
+            'product_name' => 'required',
+            'shipping_address'=>'required',
+        ]);
+        
+// Create a new item record in the database
+CustomerModel::create($request->all());
+
+// Redirect to the index page with a success message
+return redirect()->route('customer.index')->with('success', 'Item added successfully.');
     }
 
     /**
